@@ -60,7 +60,7 @@ color: #fff
 
 ## Taro 项目初始化&打包
 
-![图片名称](./img/carbon.png)
+![图片名称](https://i.loli.net/2020/07/02/PAtlV1M9TGZgFn8.png)
 
 ## Taro 开发注意事项
 
