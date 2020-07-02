@@ -18,13 +18,13 @@
 <h2>如何开发/维护一个双平台产品(微信小程序&amp;支付宝小程序)</h2>
 <ol>
 <li data-marpit-fragment="1">
-<p>方案一: 先开发一套支付宝小程序代码, 然后通过工具转微信小程序代码; 缺点: 转换后的代码多处报错, 仍然需要手动处理, 且转换后的代码可读性可维护性大大降低</p>
+<p>方案一: 开发一套支付宝小程序代码, 然后手动转微信小程序代码; 缺点: 手动转换效率低, 而且后期产品迭代需要保持两套代码的同步更新, 时间一长很容易出现更新不同步</p>
 </li>
 <li data-marpit-fragment="2">
-<p>方案二: 先开发一套支付宝小程序代码, 然后手动转微信小程序代码; 缺点: 手动转换效率低, 而且以后产品迭代需要保持两套代码的同步更新, 时间一长很容易更新不同步的现象</p>
+<p>方案二: 开发一套支付宝小程序代码, 然后通过工具转微信小程序代码; 缺点: 每次转换后的代码都会有报错, 仍然需要手动处理, 且转换后的代码可读性可维护性大大降低</p>
 </li>
 <li data-marpit-fragment="3">
-<p>方案三: 使用第三方框架开发一套代码, 然后通过框架提供的工具转为不同平台的代码; 缺点: 学习成本稍高, 但是是目前最普遍的解决方案</p>
+<p>方案三: 使用第三方框架开发, 然后通过框架提供的工具转为不同平台的代码, 而开发者只需要维护这一套代码即可; 缺点:  学习成本稍高, 但是是目前最普遍的解决方案</p>
 </li>
 </ol>
 </section>
@@ -38,7 +38,7 @@
 <li>MPX(滴滴): <a href="https://github.com/didi/mpx">https://github.com/didi/mpx</a></li>
 <li>megalo(网易考拉): <a href="https://github.com/kaola-fed/megalo">https://github.com/kaola-fed/megalo</a></li>
 </ul>
-<p>个人推荐: 综合各方面考虑(市场占用率, 社区活跃度, 更新频率, Issues 总量和解决比例等因素), 比较推荐 Taro 和 uni-app</p>
+<p>个人推荐: 综合各方面考虑(市场占用率, 社区活跃度, 更新频率, Issues 总量和Closed比例等因素), 比较推荐 Taro 和 uni-app</p>
 <ul>
 <li>Taro: 使用 react 语法</li>
 <li>uni-app: 使用 vue 语法</li>
@@ -47,36 +47,60 @@
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="4" data-background-color="#32363F" data-color="#fff" data-heading-divider="2" style="--background-color:#32363F;--color:#fff;--heading-divider:2;color:#fff;background-color:#32363F;background-image:none;">
 <h2>Taro 介绍</h2>
 <ul>
-<li>Taro 是凹凸实验室(京东)开发的多端统一开发解决方案, 可以实现前端开发一套代码, 多平台适配</li>
+<li>Taro 是凹凸实验室(京东)开发的多端统一开发解决方案, 可以实现前端代码一次编写，多平台运行</li>
 <li>支持哪些平台? 微信小程序, 支付宝小程序, 百度小程序, 字节跳动小程序, QQ 小程序, 京东小程序, 快应用, H5, ReactNative</li>
-<li>快应用: 9 大安卓手机厂商(华为、小米、OPPO、vivo、中兴、金立、联想、魅族、努比亚)共同推出的一套标准和平台, 可以在这些安卓手机上运行(免安装)</li>
+<li>快应用: 9 大安卓手机厂商(华为、小米、OPPO、vivo、中兴、金立、联想、魅族、努比亚)共同推出的一套标准和平台, 可以在这些安卓手机上运行(免安装轻量级APP)</li>
 <li>ReactNative: 将 React 语法转为 APP 原生语法(Android/iOS), 基本上可以认为是原生 APP</li>
 </ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="5" data-background-color="#32363F" data-color="#fff" data-heading-divider="2" style="--background-color:#32363F;--color:#fff;--heading-divider:2;color:#fff;background-color:#32363F;background-image:none;">
 <h2>Taro 原理</h2>
 <ul>
-<li>Taro 可以让开发者使用 React 语法开发项目, 最终通过 Taro 提供的编译工具将源码编译为: 微信小程序语法, 支付宝小程序语法...</li>
+<li>前面提到: Taro 可以让开发者使用 React 语法开发项目, 最终通过 Taro 提供的编译工具将源码编译为: 微信小程序语法, 支付宝小程序语法...</li>
+<li>编译过程: 将项目源码解析（Parse）成抽象语法树（AST），然后对 AST 进行转换(Transform)（类似 DOM 树的操作），生成（generate）新的AST，根据新的 AST 生成编译后的代码(小程序/H5/ReactNative...)。</li>
 </ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="6" data-background-color="#32363F" data-color="#fff" data-heading-divider="2" style="--background-color:#32363F;--color:#fff;--heading-divider:2;color:#fff;background-color:#32363F;background-image:none;">
 <h2>Taro 的优点(为什么用 Taro)</h2>
 <ul>
-<li>降低开发成本: 在不使用 Taro 前如果想开发一个微信小程序一个支付宝小程序, 需要开发维护两套代码, 使用 Taro 后只需要维护一套代码即可</li>
-<li>支持更多的新语法: ES6, ES7, ES8, TypeScript, React-Hooks</li>
-<li>丰富的工具/类库可以选择: Less, Sass, Redux</li>
-<li>API 调用更方便: Taro 使用 Promsie 封装小程序 API, ajax 增加了请求/响应拦截器等, 开发起来更加方便</li>
-<li>现成的 UI 组件: 官方和第三方开发者提供的大量的组件, 项目中可以直接引入使用, 降低了开发成本</li>
-<li>良好的技术支持: 遇到技术问题可以去论坛咨询, Github 提 Issues, 官方微信群</li>
+<li>
+<p>降低开发成本: 在不使用 Taro 前如果想开发一个微信小程序一个支付宝小程序, 需要开发维护两套代码, 使用 Taro 后只需要维护一套代码即可</p>
+</li>
+<li>
+<p>支持更多的新语法: ES6, ES7, ES8, TypeScript, React-Hooks</p>
+</li>
+<li>
+<p>丰富的工具/类库可以选择: Less, Sass, Redux</p>
+</li>
+<li>
+<p>API 调用更方便, 扩展了更多功能: Taro 使用 Promsie 封装小程序 API, 给ajax 增加了拦截器...</p>
+</li>
+<li>
+<p>封装好的 UI 组件: 官方和第三方开发者提供的大量的组件, 项目中可以直接引入使用, 降低了开发成本</p>
+</li>
+<li>
+<p>良好的技术支持: 遇到技术问题可以去论坛咨询, Github 提 Issues, 官方微信群</p>
+</li>
 </ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="7" data-background-color="#32363F" data-color="#fff" data-heading-divider="2" style="--background-color:#32363F;--color:#fff;--heading-divider:2;color:#fff;background-color:#32363F;background-image:none;">
 <h2>Taro 的缺点</h2>
 <ul>
-<li>仅对微信小程序 API 支持度较高: 其他如支付宝小程序 API 有很多都不支持, 可以将微信和支付宝相似 API 封装为公共方法</li>
-<li>使用小程序官方组件库不太方便: 比如支付宝官方组件库只支持支付宝小程序, 如果在 Taro 中使用就需要考虑其他平台是否支持了, 这里推荐官方 Taro 组件库, 或其他第三方的 Taro 组件库</li>
-<li>某些平台独有 API/配置需要单独处理: 不同平台的小程序还是有区别的, 比如支付宝支持<code>transparentTitle: 'auto'</code>属性, 微信不支持</li>
-<li>bug 比原生小程序多: 但是还好, 基本上通过各种渠道都找到解决办法了, 目前还没有遇到解决不了的问题</li>
+<li>
+<p>API支持度不足: 除了微信小程序外, 其他如支付宝小程序 有很多API是不支持的, 可以自己<a href="https://www.yuque.com/vrr9x6/tve0yz/rpyy2x">将相似的API封装成公共方法</a></p>
+</li>
+<li>
+<p>避免使用小程序官方组件: 小程序官方组件一般只支持自家平台, 比如使用了支付宝官方组件, 再转微信小程序就会报错, 这里推荐官方 Taro 组件库, 或其他第三方的 Taro 组件库</p>
+</li>
+<li>
+<p>某些平台独有 API/配置需要单独处理: 不同平台的小程序还是有区别的, 比如支付宝支持<code>transparentTitle: 'auto'</code>属性, 微信不支持</p>
+</li>
+<li>
+<p>bug 比原生小程序多: 但是还好, 基本上通过各种渠道都能找到解决办法</p>
+</li>
+<li>
+<p>某些情况Taro性能会略低于原生小程序: <a href="https://nervjs.github.io/taro/blog/2020-04-27-taro-vs-jd/">Taro对比原生开发</a></p>
+</li>
 </ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="8" data-background-color="#32363F" data-color="#fff" data-heading-divider="2" style="--background-color:#32363F;--color:#fff;--heading-divider:2;color:#fff;background-color:#32363F;background-image:none;">
@@ -86,27 +110,39 @@
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="9" data-background-color="#32363F" data-color="#fff" data-heading-divider="2" style="--background-color:#32363F;--color:#fff;--heading-divider:2;color:#fff;background-color:#32363F;background-image:none;">
 <h2>Taro 开发注意事项</h2>
 <blockquote>
-<p>语雀文章: <a href="https://www.yuque.com/vrr9x6/tve0yz/qnyg9d">https://www.yuque.com/vrr9x6/tve0yz/qnyg9d</a></p>
+<p>语雀: <a href="https://www.yuque.com/vrr9x6/tve0yz/qnyg9d">https://www.yuque.com/vrr9x6/tve0yz/qnyg9d</a></p>
 </blockquote>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="10" data-background-color="#32363F" data-color="#fff" data-heading-divider="2" style="--background-color:#32363F;--color:#fff;--heading-divider:2;color:#fff;background-color:#32363F;background-image:none;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="10" data-marpit-fragments="3" data-background-color="#32363F" data-color="#fff" data-heading-divider="2" style="--background-color:#32363F;--color:#fff;--heading-divider:2;color:#fff;background-color:#32363F;background-image:none;">
 <h2>总结(主观感受)</h2>
 <ul>
-<li>整体感觉: 还是比较优秀的一款框架, 需要一定的学习成本, 在开发效率上略低于小程序原生语法(开发成本大概是原生语法的 1.3 倍), 但是考虑多平台小程序, 开发效率上肯定是好过维护支付宝/微信两套代码的</li>
-<li>有利于开发者自身的技术提升: 可以使用 ES 新语法, Sass/Less 工具, 可以用 React, TypeScript, 以后再开发 H5 的时候也不会感觉生疏</li>
+<li data-marpit-fragment="1">
+<p>进行多端开发时, 提升了开发效率, 降低维护成本: 维护两套代码(微信&amp;小程序)肯定是不如维护一套代码方便</p>
+</li>
+<li data-marpit-fragment="2">
+<p>有利于开发者自身的技术提升: 可以使用 ES 新语法, Sass/Less 工具, 可以用 React, TypeScript, 以后再开发 H5 的时候也不会感觉生疏</p>
+</li>
+<li data-marpit-fragment="3">
+<p>整体感觉: 还是比较优秀的一款框架, 需要一定的学习成本</p>
+</li>
 </ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="11" data-background-color="#32363F" data-color="#fff" data-heading-divider="2" style="--background-color:#32363F;--color:#fff;--heading-divider:2;color:#fff;background-color:#32363F;background-image:none;">
 <h2>News 最新消息</h2>
 <ul>
-<li>Taro3.0 正式版已于 7 月 1 日发布, 同时支持 React, Vue, jQuery</li>
+<li>
+<p>Taro3.0 正式版已于 7 月 1 日发布, 同时支持 React, Vue, jQuery;</p>
+</li>
+<li>
+<p>想用的小伙伴可以先熟悉熟悉, 建议等更新2~3个版本再使用, 大版本迭代肯定会有很多问题</p>
+</li>
 </ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="12" data-background-color="#32363F" data-color="#fff" data-heading-divider="2" style="--background-color:#32363F;--color:#fff;--heading-divider:2;color:#fff;background-color:#32363F;background-image:none;">
 <h2><svg data-marp-fitting="svg"><foreignObject><span data-marp-fitting-svg-content> Thank You</span></foreignObject></svg></h2>
 </section>
 <script>!function(){"use strict";function t(t){Array.from(document.querySelectorAll("svg[data-marpit-svg]"),e=>{const{children:r,clientHeight:i,clientWidth:o,viewBox:n}=e;e.style.transform||(e.style.transform="translateZ(0)");const a=t||e.currentScale||1,s=n.baseVal.width/a,l=n.baseVal.height/a,c=Math.min(i/l,o/s);for(let t=0;t<r.length;t+=1){const{style:e}=r[t].firstChild;e.position||(e.position="fixed"),e.transformOrigin||(e.transformOrigin="0 0"),e.transform=`scale(${c}) translateZ(0)`}})}const e=(t,e,r)=>{if(t.getAttribute(e)!==r)return t.setAttribute(e,r),!0};function r(i=!0){for(const e of"Apple Computer, Inc."===navigator.vendor?[t]:[])e();Array.from(document.querySelectorAll('svg[data-marp-fitting="svg"]'),t=>{const r=t.firstChild,i=r.firstChild,{scrollWidth:o,scrollHeight:n}=i;let a,s=1;if(t.hasAttribute("data-marp-fitting-code")&&(a=t.parentElement.parentElement),t.hasAttribute("data-marp-fitting-math")&&(a=t.parentElement),a){const t=getComputedStyle(a),e=Math.ceil(a.clientWidth-parseFloat(t.paddingLeft)-parseFloat(t.paddingRight));e&&(s=e)}const l=Math.max(o,s),c=Math.max(n,1),d=`0 0 ${l} ${c}`;e(r,"width",""+l),e(r,"height",""+c),e(t,"preserveAspectRatio",getComputedStyle(t).getPropertyValue("--preserve-aspect-ratio")||"xMinYMin meet"),e(t,"viewBox",d)&&t.classList.toggle("__reflow__")}),i&&window.requestAnimationFrame(()=>r(i))}!function(){if("undefined"==typeof window)throw new Error("Marp Core's browser script is valid only in browser context.");window.marpCoreBrowserScript?console.warn("Marp Core's browser script has already executed."):(Object.defineProperty(window,"marpCoreBrowserScript",{value:!0}),r())}()}();
-</script></foreignObject></svg></div><script>!function(){"use strict";var e=function(e,t){var n,r=1===(e.parent||e).nodeType?e.parent||e:document.querySelector(e.parent||e),s=[].filter.call("string"==typeof e.slides?r.querySelectorAll(e.slides):e.slides||r.children,(function(e){return"SCRIPT"!==e.nodeName})),a={},o=function(e,t){return(t=t||{}).index=s.indexOf(e),t.slide=e,t},i=function(e,t){a[e]=(a[e]||[]).filter((function(e){return e!==t}))},l=function(e,t){return(a[e]||[]).reduce((function(e,n){return e&&!1!==n(t)}),!0)},c=function(e,t){s[e]&&(n&&l("deactivate",o(n,t)),n=s[e],l("activate",o(n,t)))},d=function(e,t){var r=s.indexOf(n)+e;l(e>0?"next":"prev",o(n,t))&&c(r,t)},u={off:i,on:function(e,t){return(a[e]||(a[e]=[])).push(t),i.bind(null,e,t)},fire:l,slide:function(e,t){if(!arguments.length)return s.indexOf(n);l("slide",o(s[e],t))&&c(e,t)},next:d.bind(null,1),prev:d.bind(null,-1),parent:r,slides:s,destroy:function(e){l("destroy",o(n,e)),a={}}};return(t||[]).forEach((function(e){e(u)})),n||c(0),u};function t(e){e.parent.classList.add("bespoke-marp-parent"),e.slides.map(e=>e.classList.add("bespoke-marp-slide")),e.on("activate",t=>{const n=!t.slide.classList.contains("bespoke-marp-active");e.slides.map(e=>{e.classList.remove("bespoke-marp-active")}),t.slide.classList.add("bespoke-marp-active"),n&&(t.slide.classList.add("bespoke-marp-active-ready"),document.body.clientHeight,t.slide.classList.remove("bespoke-marp-active-ready"))})}function n(e=2e3){return t=>{let n;function r(){n&&clearTimeout(n),n=setTimeout(()=>{t.parent.classList.add("bespoke-marp-inactive")},e),t.parent.classList.remove("bespoke-marp-inactive")}document.addEventListener("mousedown",r),document.addEventListener("mousemove",r),document.addEventListener("touchend",r),setTimeout(r,0)}}const r=["AUDIO","BUTTON","INPUT","SELECT","TEXTAREA","VIDEO"];function s(e){e.parent.addEventListener("keydown",e=>{if(!e.target)return;const t=e.target;(r.includes(t.nodeName)||"true"===t.contentEditable)&&e.stopPropagation()})}function a(e){window.addEventListener("load",()=>{for(const t of e.slides){const e=t.querySelector("[data-marp-fitting]")?"":"hideable";t.setAttribute("data-bespoke-marp-load",e)}})}function o(e){let t=0,n=0;Object.defineProperty(e,"fragments",{enumerable:!0,value:e.slides.map(e=>[null,...e.querySelectorAll("[data-marpit-fragment]")])});const r=r=>void 0!==e.fragments[t][n+r],s=(r,s)=>{t=r,n=s,e.fragments.forEach((e,t)=>{e.forEach((e,n)=>{if(null==e)return;const a=t<r||t===r&&n<=s;e.setAttribute("data-bespoke-marp-fragment",a?"active":"inactive"),t===r&&n===s?e.setAttribute("data-bespoke-marp-current-fragment","current"):e.removeAttribute("data-bespoke-marp-current-fragment")})}),e.fragmentIndex=s;const a={slide:e.slides[r],index:r,fragments:e.fragments[r],fragmentIndex:s};e.fire("fragment",a)};e.on("next",()=>{if(r(1))return s(t,n+1),!1;const a=t+1;e.fragments[a]&&s(a,0)}),e.on("prev",()=>{if(r(-1))return s(t,n-1),!1;const a=t-1;e.fragments[a]&&s(a,e.fragments[a].length-1)}),e.on("slide",({index:t,fragment:n})=>{let r=0;if(void 0!==n){const s=e.fragments[t];if(s){const{length:e}=s;r=-1===n?e-1:Math.min(Math.max(n,0),e-1)}}s(t,r)}),s(0,0)}var i,l=function(e,t,n){return e(n={path:t,exports:{},require:function(e,t){return function(){throw new Error("Dynamic requires are not currently supported by @rollup/plugin-commonjs")}(null==t&&n.path)}},n.exports),n.exports}((function(e){
+</script></foreignObject></svg></div><div class="bespoke-marp-note" data-index="7" tabindex="0"><p>![图片名称](./img/taro-init.png)</p></div><script>!function(){"use strict";var e=function(e,t){var n,r=1===(e.parent||e).nodeType?e.parent||e:document.querySelector(e.parent||e),s=[].filter.call("string"==typeof e.slides?r.querySelectorAll(e.slides):e.slides||r.children,(function(e){return"SCRIPT"!==e.nodeName})),a={},o=function(e,t){return(t=t||{}).index=s.indexOf(e),t.slide=e,t},i=function(e,t){a[e]=(a[e]||[]).filter((function(e){return e!==t}))},l=function(e,t){return(a[e]||[]).reduce((function(e,n){return e&&!1!==n(t)}),!0)},c=function(e,t){s[e]&&(n&&l("deactivate",o(n,t)),n=s[e],l("activate",o(n,t)))},d=function(e,t){var r=s.indexOf(n)+e;l(e>0?"next":"prev",o(n,t))&&c(r,t)},u={off:i,on:function(e,t){return(a[e]||(a[e]=[])).push(t),i.bind(null,e,t)},fire:l,slide:function(e,t){if(!arguments.length)return s.indexOf(n);l("slide",o(s[e],t))&&c(e,t)},next:d.bind(null,1),prev:d.bind(null,-1),parent:r,slides:s,destroy:function(e){l("destroy",o(n,e)),a={}}};return(t||[]).forEach((function(e){e(u)})),n||c(0),u};function t(e){e.parent.classList.add("bespoke-marp-parent"),e.slides.map(e=>e.classList.add("bespoke-marp-slide")),e.on("activate",t=>{const n=!t.slide.classList.contains("bespoke-marp-active");e.slides.map(e=>{e.classList.remove("bespoke-marp-active")}),t.slide.classList.add("bespoke-marp-active"),n&&(t.slide.classList.add("bespoke-marp-active-ready"),document.body.clientHeight,t.slide.classList.remove("bespoke-marp-active-ready"))})}function n(e=2e3){return t=>{let n;function r(){n&&clearTimeout(n),n=setTimeout(()=>{t.parent.classList.add("bespoke-marp-inactive")},e),t.parent.classList.remove("bespoke-marp-inactive")}document.addEventListener("mousedown",r),document.addEventListener("mousemove",r),document.addEventListener("touchend",r),setTimeout(r,0)}}const r=["AUDIO","BUTTON","INPUT","SELECT","TEXTAREA","VIDEO"];function s(e){e.parent.addEventListener("keydown",e=>{if(!e.target)return;const t=e.target;(r.includes(t.nodeName)||"true"===t.contentEditable)&&e.stopPropagation()})}function a(e){window.addEventListener("load",()=>{for(const t of e.slides){const e=t.querySelector("[data-marp-fitting]")?"":"hideable";t.setAttribute("data-bespoke-marp-load",e)}})}function o(e){let t=0,n=0;Object.defineProperty(e,"fragments",{enumerable:!0,value:e.slides.map(e=>[null,...e.querySelectorAll("[data-marpit-fragment]")])});const r=r=>void 0!==e.fragments[t][n+r],s=(r,s)=>{t=r,n=s,e.fragments.forEach((e,t)=>{e.forEach((e,n)=>{if(null==e)return;const a=t<r||t===r&&n<=s;e.setAttribute("data-bespoke-marp-fragment",a?"active":"inactive"),t===r&&n===s?e.setAttribute("data-bespoke-marp-current-fragment","current"):e.removeAttribute("data-bespoke-marp-current-fragment")})}),e.fragmentIndex=s;const a={slide:e.slides[r],index:r,fragments:e.fragments[r],fragmentIndex:s};e.fire("fragment",a)};e.on("next",()=>{if(r(1))return s(t,n+1),!1;const a=t+1;e.fragments[a]&&s(a,0)}),e.on("prev",()=>{if(r(-1))return s(t,n-1),!1;const a=t-1;e.fragments[a]&&s(a,e.fragments[a].length-1)}),e.on("slide",({index:t,fragment:n})=>{let r=0;if(void 0!==n){const s=e.fragments[t];if(s){const{length:e}=s;r=-1===n?e-1:Math.min(Math.max(n,0),e-1)}}s(t,r)}),s(0,0)}var i,l=function(e,t,n){return e(n={path:t,exports:{},require:function(e,t){return function(){throw new Error("Dynamic requires are not currently supported by @rollup/plugin-commonjs")}(null==t&&n.path)}},n.exports),n.exports}((function(e){
 /*!
   * screenfull
   * v5.0.2 - 2020-02-13
