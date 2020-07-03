@@ -19,7 +19,7 @@
 <h2>首先讲一个工作中遇到的问题</h2>
 <p>掌上加油支付宝小程序</p>
 <blockquote>
-<p>加油业务线有一款产品&quot;掌上加油&quot;, 它是一款支付宝小程序, 有一天我们来了一个需求, 想让它运行在微信端。 首先我们要知道支付宝小程序肯定是没有办法运行在微信端的, 怎么办? 那我们只能手动将代码改造成微信小程序的代码, 但是从那以后我们就需要维护两套代码了, 带来的问题: 维护两套代码增加了维护成本, 并且有时候比较着急的需求, 就可能出现更新不同步, 我们也在一直在努力解决这个问题。</p>
+<p>加油业务线有一款产品&quot;掌上加油&quot;, 它是一个支付宝小程序, 有一天我们来了一个需求, 要求&quot;掌上加油&quot;运行在微信端。 首先我们要知道支付宝小程序肯定是没有办法运行在微信端的? 那我们是手动将支付宝小程序改造成微信小程序, 但是从那以后我们就需要维护两套代码了: 那就意味着维护的成本增加, 还有我们的产品一般都是敏捷开发, 需求有时候比较着急, 就可能出现更新不同步的情况, 我们也在一直在努力解决这个问题。</p>
 </blockquote>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="3" data-background-color="#32363F" data-color="#fff" data-heading-divider="2" style="--background-color:#32363F;--color:#fff;--heading-divider:2;color:#fff;background-color:#32363F;background-image:none;">
@@ -28,17 +28,17 @@
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="4" data-background-color="#32363F" data-color="#fff" data-heading-divider="2" style="--background-color:#32363F;--color:#fff;--heading-divider:2;color:#fff;background-color:#32363F;background-image:none;">
 <h2>尝试:</h2>
 <blockquote>
-<p>有没有一种工具可以直接将我们的支付宝小程序转成微信小程序, 这样我们只需要维护支付宝小程序即可, 每次迭代后用工具转成微信小程序? 抱着这种想法, 我们在Github上找到了一款工具<a href="https://github.com/ant-move/Antmove">Antmove</a>, 但是使用过后发现转换后的代码仍然有很多处报错, 需要你手动去处理, 并且转换后的代码可读性和可维护性都变得很差; 并没有达到我们理想的效果, 所以这个方案直接被我们毙掉了</p>
+<p>一开始的思路: 有没有一种工具可以直接帮我们把支付宝小程序转成微信小程序, 这样我们只需要维护支付宝小程序即可, 每次迭代后用工具转成微信小程序? 抱着这种想法, 我们在Github上找到了一款工具<a href="https://github.com/ant-move/Antmove">Antmove</a>, 但是使用过后发现转换后的代码仍然有很多处报错, 需要你手动去处理, 并且转换后的代码可读性和可维护性都变得很差; 并没有达到我们理想的效果, 这个方案就被我们pass掉了</p>
 </blockquote>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="5" data-background-color="#32363F" data-color="#fff" data-heading-divider="2" style="--background-color:#32363F;--color:#fff;--heading-divider:2;color:#fff;background-color:#32363F;background-image:none;">
-<h2>市场上还提供了另外一种选择</h2>
+<h2>另外一种选择</h2>
 <blockquote>
-<p>使用第三方框架开发, 这也是目前比较普遍的解决方案, 使用框架开发能做到: 开发者只需要维护这一套代码即可, 大大降低了维护成本, 避免了多套代码更新不同步现象; 缺点: 适合新项目, 旧项目需要重写(不是重构);</p>
+<p>使用第三方框架开发, 这也是目前比较普遍的解决方案, 使用框架开发能做到: 开发者只需要维护这一套代码即可, 大大降低了维护成本, 避免了多套代码更新不同步现象;</p>
 </blockquote>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="6" data-background-color="#32363F" data-color="#fff" data-heading-divider="2" style="--background-color:#32363F;--color:#fff;--heading-divider:2;color:#fff;background-color:#32363F;background-image:none;">
-<h2>那么市场上有哪些框架可以选择呢?</h2>
+<h2>目前市场上有哪些框架呢?</h2>
 <blockquote>
 <p>我找了热度排名前6的几款框架, 有兴趣的可以去他们Github上面了解一下</p>
 </blockquote>
@@ -57,37 +57,42 @@
 </ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="7" data-background-color="#32363F" data-color="#fff" data-heading-divider="2" style="--background-color:#32363F;--color:#fff;--heading-divider:2;color:#fff;background-color:#32363F;background-image:none;">
+<h2>使用框架开发前需要了解</h2>
+<ul>
+<li>框架开发一般只适合新项目: 因为它需要你用框架搭建项目, 使用框架支持的语法进行开发, 那我们&quot;掌上加油&quot;如果想用的话, 就需要重写了, 考虑重写的成本太高所以一直没有用</li>
+<li>最近的一个需求&quot;油荟通小程序&quot;, 这个项目比较小, 而且是从0开发, 所有我们在这次的项目中使用了Taro框架进行开发</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="8" data-background-color="#32363F" data-color="#fff" data-heading-divider="2" style="--background-color:#32363F;--color:#fff;--heading-divider:2;color:#fff;background-color:#32363F;background-image:none;">
 <h2>为什么选 Taro</h2>
-<blockquote>
-<p>最近加油业务线有一款新产品&quot;油荟通小程序&quot;, 就使用了Taro进行开发的, 下面给出了三个理由</p>
-</blockquote>
 <ol>
 <li>
-<p>热度高: <a href="https://www.infoq.cn/article/dCY0AHH71rBBjq3pIfh7">2019年 Github 中国区活跃度top5, 全球排名90</a></p>
+<p>热度高: <a href="https://www.infoq.cn/article/dCY0AHH71rBBjq3pIfh7">2019年 Github 中国区活跃度第5名</a></p>
 <blockquote>
-<p>遇到bug很容易解决</p>
+<p>意味着: 使用这款框架的人数多, 能被你遇到的坑基本上都被别人踩过了, 所以解决起来比较容易</p>
 </blockquote>
 </li>
 <li>
 <p>大厂背书: Taro 是凹凸实验室(京东)开发的多端统一开发解决方案。</p>
 <blockquote>
-<p>不用太担心停止维护的问题, 就算官方不维护了, 社区里也会有人出来维护的, 这也是社区活跃度高的优势</p>
+<p>不用太担心停止维护的问题, 就算京东不维护了, 社区的活跃度这么高, 也会有大批的人出来维护的</p>
 </blockquote>
 </li>
 <li>
-<p>支持的平台多: 微信小程序, 支付宝小程序, 百度小程序, 字节跳动小程序, QQ 小程序, 京东小程序, 快应用, H5, ReactNative</p>
+<p>支持的平台多: 微信小程序, 支付宝小程序, 百度小程序, 字节跳动小程序, QQ 小程序, 京东小程序, H5, 快应用, ReactNative</p>
+
 <ul>
-<li>快应用: 免安装轻量级安卓 APP</li>
-<li>ReactNative: 基本上可以认为是原生 APP(Android/iOS)</li>
+<li>快应用: 轻量级安卓 APP(免安装)</li>
+<li>ReactNative: Facebook出品, 基本上可以认为是原生 APP(Android/iOS)</li>
 </ul>
 </li>
 </ol>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="8" data-background-color="#32363F" data-color="#fff" data-heading-divider="2" style="--background-color:#32363F;--color:#fff;--heading-divider:2;color:#fff;background-color:#32363F;background-image:none;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="9" data-background-color="#32363F" data-color="#fff" data-heading-divider="2" style="--background-color:#32363F;--color:#fff;--heading-divider:2;color:#fff;background-color:#32363F;background-image:none;">
 <h2>Taro 的优点</h2>
 <ol>
 <li>
-<p>降低维护成本(最主要优势): <img class="emoji" draggable="false" alt="❎" src="https://twemoji.maxcdn.com/2/svg/274e.svg" data-marp-twemoji=""/>维护多套代码; <img class="emoji" draggable="false" alt="✅" src="https://twemoji.maxcdn.com/2/svg/2705.svg" data-marp-twemoji=""/>维护一套代码;</p>
+<p>降低多平台维护成本(最主要优势): <img class="emoji" draggable="false" alt="❎" src="https://twemoji.maxcdn.com/2/svg/274e.svg" data-marp-twemoji=""/>维护多套代码; <img class="emoji" draggable="false" alt="✅" src="https://twemoji.maxcdn.com/2/svg/2705.svg" data-marp-twemoji=""/>维护一套代码;</p>
 </li>
 <li>
 <p>支持更多的新语法: ES6, ES7, ES8, TypeScript, React-Hooks...</p>
@@ -106,7 +111,7 @@
 </li>
 </ol>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="9" data-background-color="#32363F" data-color="#fff" data-heading-divider="2" style="--background-color:#32363F;--color:#fff;--heading-divider:2;color:#fff;background-color:#32363F;background-image:none;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="10" data-background-color="#32363F" data-color="#fff" data-heading-divider="2" style="--background-color:#32363F;--color:#fff;--heading-divider:2;color:#fff;background-color:#32363F;background-image:none;">
 <h2>Taro 的缺点</h2>
 <blockquote>
 <p>夸完优点我们再说说缺点</p>
@@ -126,7 +131,7 @@
 </li>
 </ol>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="10" data-background-color="#32363F" data-color="#fff" data-heading-divider="2" style="--background-color:#32363F;--color:#fff;--heading-divider:2;color:#fff;background-color:#32363F;background-image:none;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="11" data-background-color="#32363F" data-color="#fff" data-heading-divider="2" style="--background-color:#32363F;--color:#fff;--heading-divider:2;color:#fff;background-color:#32363F;background-image:none;">
 <h2>Taro 原理</h2>
 <blockquote>
 <p>它底层是如何实现一套代码支持多平台呢?</p>
@@ -140,21 +145,21 @@
 </li>
 </ul>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="11" data-background-color="#32363F" data-color="#fff" data-heading-divider="2" style="--background-color:#32363F;--color:#fff;--heading-divider:2;color:#fff;background-color:#32363F;background-image:none;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="12" data-background-color="#32363F" data-color="#fff" data-heading-divider="2" style="--background-color:#32363F;--color:#fff;--heading-divider:2;color:#fff;background-color:#32363F;background-image:none;">
 <h2>Taro 项目初始化&amp;打包</h2>
 
 <p><img src="https://i.loli.net/2020/07/02/PAtlV1M9TGZgFn8.png" alt="图片名称" /></p>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="12" data-background-color="#32363F" data-color="#fff" data-heading-divider="2" style="--background-color:#32363F;--color:#fff;--heading-divider:2;color:#fff;background-color:#32363F;background-image:none;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="13" data-background-color="#32363F" data-color="#fff" data-heading-divider="2" style="--background-color:#32363F;--color:#fff;--heading-divider:2;color:#fff;background-color:#32363F;background-image:none;">
 <h2>Taro 开发注意事项</h2>
 <blockquote>
-<p>这里是我第一次使用Taro的时候遇到的坑, 总结了一篇文章</p>
+<p>这里是我第一次在项目中使用Taro的时候遇到的坑, 总结了一篇文章</p>
 </blockquote>
 <ul>
 <li>语雀: <a href="https://www.yuque.com/vrr9x6/tve0yz/qnyg9d">https://www.yuque.com/vrr9x6/tve0yz/qnyg9d</a></li>
 </ul>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="13" data-background-color="#32363F" data-color="#fff" data-heading-divider="2" style="--background-color:#32363F;--color:#fff;--heading-divider:2;color:#fff;background-color:#32363F;background-image:none;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="14" data-background-color="#32363F" data-color="#fff" data-heading-divider="2" style="--background-color:#32363F;--color:#fff;--heading-divider:2;color:#fff;background-color:#32363F;background-image:none;">
 <h2>总结</h2>
 <ul>
 <li>
@@ -169,9 +174,12 @@
 <li>
 <p>说说我的整体感觉: Taro 还是比较优秀的一款框架, 但是需要一定的学习成本</p>
 </li>
+<li>
+<p>只适合新项目: 旧项目想用的话就需要重写代码了</p>
+</li>
 </ul>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="14" data-background-color="#32363F" data-color="#fff" data-heading-divider="2" style="--background-color:#32363F;--color:#fff;--heading-divider:2;color:#fff;background-color:#32363F;background-image:none;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="15" data-background-color="#32363F" data-color="#fff" data-heading-divider="2" style="--background-color:#32363F;--color:#fff;--heading-divider:2;color:#fff;background-color:#32363F;background-image:none;">
 <h2>News 最新消息</h2>
 <ul>
 <li>
@@ -182,11 +190,11 @@
 </li>
 </ul>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="15" data-background-color="#32363F" data-color="#fff" data-heading-divider="2" style="--background-color:#32363F;--color:#fff;--heading-divider:2;color:#fff;background-color:#32363F;background-image:none;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="16" data-background-color="#32363F" data-color="#fff" data-heading-divider="2" style="--background-color:#32363F;--color:#fff;--heading-divider:2;color:#fff;background-color:#32363F;background-image:none;">
 <h2><svg data-marp-fitting="svg"><foreignObject><span data-marp-fitting-svg-content> Thank You</span></foreignObject></svg></h2>
 </section>
 <script>!function(){"use strict";function t(t){Array.from(document.querySelectorAll("svg[data-marpit-svg]"),e=>{const{children:r,clientHeight:i,clientWidth:o,viewBox:n}=e;e.style.transform||(e.style.transform="translateZ(0)");const a=t||e.currentScale||1,s=n.baseVal.width/a,l=n.baseVal.height/a,c=Math.min(i/l,o/s);for(let t=0;t<r.length;t+=1){const{style:e}=r[t].firstChild;e.position||(e.position="fixed"),e.transformOrigin||(e.transformOrigin="0 0"),e.transform=`scale(${c}) translateZ(0)`}})}const e=(t,e,r)=>{if(t.getAttribute(e)!==r)return t.setAttribute(e,r),!0};function r(i=!0){for(const e of"Apple Computer, Inc."===navigator.vendor?[t]:[])e();Array.from(document.querySelectorAll('svg[data-marp-fitting="svg"]'),t=>{const r=t.firstChild,i=r.firstChild,{scrollWidth:o,scrollHeight:n}=i;let a,s=1;if(t.hasAttribute("data-marp-fitting-code")&&(a=t.parentElement.parentElement),t.hasAttribute("data-marp-fitting-math")&&(a=t.parentElement),a){const t=getComputedStyle(a),e=Math.ceil(a.clientWidth-parseFloat(t.paddingLeft)-parseFloat(t.paddingRight));e&&(s=e)}const l=Math.max(o,s),c=Math.max(n,1),d=`0 0 ${l} ${c}`;e(r,"width",""+l),e(r,"height",""+c),e(t,"preserveAspectRatio",getComputedStyle(t).getPropertyValue("--preserve-aspect-ratio")||"xMinYMin meet"),e(t,"viewBox",d)&&t.classList.toggle("__reflow__")}),i&&window.requestAnimationFrame(()=>r(i))}!function(){if("undefined"==typeof window)throw new Error("Marp Core's browser script is valid only in browser context.");window.marpCoreBrowserScript?console.warn("Marp Core's browser script has already executed."):(Object.defineProperty(window,"marpCoreBrowserScript",{value:!0}),r())}()}();
-</script></foreignObject></svg></div><div class="bespoke-marp-note" data-index="0" tabindex="0"><p>大家上午好, 今天给大家介绍一款前端框架, Taro</p></div><div class="bespoke-marp-note" data-index="7" tabindex="0"><p>这里我们做开发的应该深有体会, 新技术学完过段时间就忘, 但是用几次就熟悉了</p><p>提一下: 我在开发中遇到的问题基本上都能从Github或者技术博客上找到的答案</p></div><div class="bespoke-marp-note" data-index="10" tabindex="0"><p>这里可以给大家演示一下打包过程, 项目初始化就不演示了, 那个下载依赖太花时间</p><p>![图片名称](./img/taro-init.png)</p></div><script>!function(){"use strict";var e=function(e,t){var n,r=1===(e.parent||e).nodeType?e.parent||e:document.querySelector(e.parent||e),s=[].filter.call("string"==typeof e.slides?r.querySelectorAll(e.slides):e.slides||r.children,(function(e){return"SCRIPT"!==e.nodeName})),a={},o=function(e,t){return(t=t||{}).index=s.indexOf(e),t.slide=e,t},i=function(e,t){a[e]=(a[e]||[]).filter((function(e){return e!==t}))},l=function(e,t){return(a[e]||[]).reduce((function(e,n){return e&&!1!==n(t)}),!0)},c=function(e,t){s[e]&&(n&&l("deactivate",o(n,t)),n=s[e],l("activate",o(n,t)))},d=function(e,t){var r=s.indexOf(n)+e;l(e>0?"next":"prev",o(n,t))&&c(r,t)},u={off:i,on:function(e,t){return(a[e]||(a[e]=[])).push(t),i.bind(null,e,t)},fire:l,slide:function(e,t){if(!arguments.length)return s.indexOf(n);l("slide",o(s[e],t))&&c(e,t)},next:d.bind(null,1),prev:d.bind(null,-1),parent:r,slides:s,destroy:function(e){l("destroy",o(n,e)),a={}}};return(t||[]).forEach((function(e){e(u)})),n||c(0),u};function t(e){e.parent.classList.add("bespoke-marp-parent"),e.slides.map(e=>e.classList.add("bespoke-marp-slide")),e.on("activate",t=>{const n=!t.slide.classList.contains("bespoke-marp-active");e.slides.map(e=>{e.classList.remove("bespoke-marp-active")}),t.slide.classList.add("bespoke-marp-active"),n&&(t.slide.classList.add("bespoke-marp-active-ready"),document.body.clientHeight,t.slide.classList.remove("bespoke-marp-active-ready"))})}function n(e=2e3){return t=>{let n;function r(){n&&clearTimeout(n),n=setTimeout(()=>{t.parent.classList.add("bespoke-marp-inactive")},e),t.parent.classList.remove("bespoke-marp-inactive")}document.addEventListener("mousedown",r),document.addEventListener("mousemove",r),document.addEventListener("touchend",r),setTimeout(r,0)}}const r=["AUDIO","BUTTON","INPUT","SELECT","TEXTAREA","VIDEO"];function s(e){e.parent.addEventListener("keydown",e=>{if(!e.target)return;const t=e.target;(r.includes(t.nodeName)||"true"===t.contentEditable)&&e.stopPropagation()})}function a(e){window.addEventListener("load",()=>{for(const t of e.slides){const e=t.querySelector("[data-marp-fitting]")?"":"hideable";t.setAttribute("data-bespoke-marp-load",e)}})}function o(e){let t=0,n=0;Object.defineProperty(e,"fragments",{enumerable:!0,value:e.slides.map(e=>[null,...e.querySelectorAll("[data-marpit-fragment]")])});const r=r=>void 0!==e.fragments[t][n+r],s=(r,s)=>{t=r,n=s,e.fragments.forEach((e,t)=>{e.forEach((e,n)=>{if(null==e)return;const a=t<r||t===r&&n<=s;e.setAttribute("data-bespoke-marp-fragment",a?"active":"inactive"),t===r&&n===s?e.setAttribute("data-bespoke-marp-current-fragment","current"):e.removeAttribute("data-bespoke-marp-current-fragment")})}),e.fragmentIndex=s;const a={slide:e.slides[r],index:r,fragments:e.fragments[r],fragmentIndex:s};e.fire("fragment",a)};e.on("next",()=>{if(r(1))return s(t,n+1),!1;const a=t+1;e.fragments[a]&&s(a,0)}),e.on("prev",()=>{if(r(-1))return s(t,n-1),!1;const a=t-1;e.fragments[a]&&s(a,e.fragments[a].length-1)}),e.on("slide",({index:t,fragment:n})=>{let r=0;if(void 0!==n){const s=e.fragments[t];if(s){const{length:e}=s;r=-1===n?e-1:Math.min(Math.max(n,0),e-1)}}s(t,r)}),s(0,0)}var i,l=function(e,t,n){return e(n={path:t,exports:{},require:function(e,t){return function(){throw new Error("Dynamic requires are not currently supported by @rollup/plugin-commonjs")}(null==t&&n.path)}},n.exports),n.exports}((function(e){
+</script></foreignObject></svg></div><div class="bespoke-marp-note" data-index="0" tabindex="0"><p>大家下午好, 今天给大家介绍一款前端的框架, Taro</p></div><div class="bespoke-marp-note" data-index="7" tabindex="0"><p>前面的小程序和H5我想大家应该都了解, 这里简单介绍一下后面这两个</p></div><div class="bespoke-marp-note" data-index="8" tabindex="0"><p>这里我们做开发的应该深有体会, 新技术学完过段时间就忘, 但是用几次就熟悉了</p><p>提一下: 我在开发中遇到的问题基本上都能从Github或者技术博客上找到的答案</p></div><div class="bespoke-marp-note" data-index="11" tabindex="0"><p>这里可以给大家演示一下打包过程, 项目初始化就不演示了, 那个下载依赖太花时间</p><p>![图片名称](./img/taro-init.png)</p></div><script>!function(){"use strict";var e=function(e,t){var n,r=1===(e.parent||e).nodeType?e.parent||e:document.querySelector(e.parent||e),s=[].filter.call("string"==typeof e.slides?r.querySelectorAll(e.slides):e.slides||r.children,(function(e){return"SCRIPT"!==e.nodeName})),a={},o=function(e,t){return(t=t||{}).index=s.indexOf(e),t.slide=e,t},i=function(e,t){a[e]=(a[e]||[]).filter((function(e){return e!==t}))},l=function(e,t){return(a[e]||[]).reduce((function(e,n){return e&&!1!==n(t)}),!0)},c=function(e,t){s[e]&&(n&&l("deactivate",o(n,t)),n=s[e],l("activate",o(n,t)))},d=function(e,t){var r=s.indexOf(n)+e;l(e>0?"next":"prev",o(n,t))&&c(r,t)},u={off:i,on:function(e,t){return(a[e]||(a[e]=[])).push(t),i.bind(null,e,t)},fire:l,slide:function(e,t){if(!arguments.length)return s.indexOf(n);l("slide",o(s[e],t))&&c(e,t)},next:d.bind(null,1),prev:d.bind(null,-1),parent:r,slides:s,destroy:function(e){l("destroy",o(n,e)),a={}}};return(t||[]).forEach((function(e){e(u)})),n||c(0),u};function t(e){e.parent.classList.add("bespoke-marp-parent"),e.slides.map(e=>e.classList.add("bespoke-marp-slide")),e.on("activate",t=>{const n=!t.slide.classList.contains("bespoke-marp-active");e.slides.map(e=>{e.classList.remove("bespoke-marp-active")}),t.slide.classList.add("bespoke-marp-active"),n&&(t.slide.classList.add("bespoke-marp-active-ready"),document.body.clientHeight,t.slide.classList.remove("bespoke-marp-active-ready"))})}function n(e=2e3){return t=>{let n;function r(){n&&clearTimeout(n),n=setTimeout(()=>{t.parent.classList.add("bespoke-marp-inactive")},e),t.parent.classList.remove("bespoke-marp-inactive")}document.addEventListener("mousedown",r),document.addEventListener("mousemove",r),document.addEventListener("touchend",r),setTimeout(r,0)}}const r=["AUDIO","BUTTON","INPUT","SELECT","TEXTAREA","VIDEO"];function s(e){e.parent.addEventListener("keydown",e=>{if(!e.target)return;const t=e.target;(r.includes(t.nodeName)||"true"===t.contentEditable)&&e.stopPropagation()})}function a(e){window.addEventListener("load",()=>{for(const t of e.slides){const e=t.querySelector("[data-marp-fitting]")?"":"hideable";t.setAttribute("data-bespoke-marp-load",e)}})}function o(e){let t=0,n=0;Object.defineProperty(e,"fragments",{enumerable:!0,value:e.slides.map(e=>[null,...e.querySelectorAll("[data-marpit-fragment]")])});const r=r=>void 0!==e.fragments[t][n+r],s=(r,s)=>{t=r,n=s,e.fragments.forEach((e,t)=>{e.forEach((e,n)=>{if(null==e)return;const a=t<r||t===r&&n<=s;e.setAttribute("data-bespoke-marp-fragment",a?"active":"inactive"),t===r&&n===s?e.setAttribute("data-bespoke-marp-current-fragment","current"):e.removeAttribute("data-bespoke-marp-current-fragment")})}),e.fragmentIndex=s;const a={slide:e.slides[r],index:r,fragments:e.fragments[r],fragmentIndex:s};e.fire("fragment",a)};e.on("next",()=>{if(r(1))return s(t,n+1),!1;const a=t+1;e.fragments[a]&&s(a,0)}),e.on("prev",()=>{if(r(-1))return s(t,n-1),!1;const a=t-1;e.fragments[a]&&s(a,e.fragments[a].length-1)}),e.on("slide",({index:t,fragment:n})=>{let r=0;if(void 0!==n){const s=e.fragments[t];if(s){const{length:e}=s;r=-1===n?e-1:Math.min(Math.max(n,0),e-1)}}s(t,r)}),s(0,0)}var i,l=function(e,t,n){return e(n={path:t,exports:{},require:function(e,t){return function(){throw new Error("Dynamic requires are not currently supported by @rollup/plugin-commonjs")}(null==t&&n.path)}},n.exports),n.exports}((function(e){
 /*!
   * screenfull
   * v5.0.2 - 2020-02-13
