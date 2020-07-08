@@ -29,7 +29,7 @@ color: #fff
 
 ## 目前市场上有哪些框架呢?
 
-> 我找了热度排名前6的几款框架, 有兴趣的可以去他们Github上面了解一下
+> 我统计了一下热度排名前6的几款框架, 有兴趣的可以去他们Github上面了解一下
 
 - Taro(京东): https://github.com/NervJS/taro
 - uni-app(DCloud): https://github.com/dcloudio/uni-app
@@ -61,7 +61,7 @@ color: #fff
 3. 支持的平台多: 微信小程序, 支付宝小程序, 百度小程序, 字节跳动小程序, QQ 小程序, 京东小程序, H5, 快应用, ReactNative
    <!-- 前面的小程序和H5我想大家应该都了解, 这里简单介绍一下后面这两个 -->
     - 快应用: 轻量级安卓 APP(免安装)
-    - ReactNative: Facebook出品, 基本上可以认为是原生 APP(Android/iOS)
+    - ReactNative: 可以生成原生APP的代码(Android/iOS)
 
 ## Taro 的优点
 
